@@ -1,23 +1,21 @@
 package com.android.mvpp2p.ui.main;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.view.MenuItem;
 
-import com.alibaba.fastjson.JSON;
 import com.android.mvpp2p.AppManager;
+import com.android.mvpp2p.R;
 import com.android.mvpp2p.api.HttpApi;
-import com.android.mvpp2p.bean.BaseData;
-import com.android.mvpp2p.bean.ManagerListData;
 import com.android.mvpp2p.injector.PerActivity;
+import com.android.mvpp2p.ui.information.InformationFragment;
+import com.android.mvpp2p.ui.product.ProductFragment;
 import com.android.mvpp2p.utils.ToastUtil;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 /**
  * Created by apple on 16/7/5.
@@ -39,27 +37,6 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void attachView(@NonNull MainContract.View view) {
         mMainView = view;
-        //去获取首页数据
-        mSubscription = mHttpApi.getSubList().observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<BaseData>() {
-            @Override
-            public void call(BaseData baseData) {
-                if (baseData != null) {
-                    if ("0".equals(baseData.getState())) {
-                        List<ManagerListData> managerListDatas = JSON.parseArray(baseData.getData(), ManagerListData.class);
-                    } else {
-                        ToastUtil.showToast(baseData.getMsg());
-                    }
-                } else {
-                    ToastUtil.showToast("加载失败");
-                }
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-                throwable.printStackTrace();
-                ToastUtil.showToast(throwable.getMessage());
-            }
-        });
     }
 
     @Override
@@ -75,6 +52,34 @@ public class MainPresenter implements MainContract.Presenter {
     public void exits() {
         if (isCanExit()) {
             AppManager.getAppManager().AppExit(mContext);
+        }
+    }
+
+    @Override
+    public void NavigationItemSelected(MenuItem item) {
+        Fragment mFragment = null;
+        if (item.getItemId() == R.id.nav_companyLoan) {//特权
+            mFragment = new ProductFragment();
+        }
+        if (item.getItemId() == R.id.nav_infomation) {//资讯
+            mFragment = new InformationFragment();
+        }
+        if (item.getItemId() == R.id.nav_manage) {//理财标的
+            mFragment = new ProductFragment();
+        }
+        if (item.getItemId() == R.id.nav_my) {//我的账户
+            mFragment = new ProductFragment();
+        }
+        if (item.getItemId() == R.id.nav_plat) {//搜平台
+            mFragment = new ProductFragment();
+        }
+        if (item.getItemId() == R.id.nav_setting) {//搜平台
+            mMainView.intentSeting();
+        }
+        if (mFragment != null) {
+            mMainView.setTitle(item.getTitle());
+            mMainView.showFragment(mFragment);
+            mMainView.closeDrawers();
         }
     }
 

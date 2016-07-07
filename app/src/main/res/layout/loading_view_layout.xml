@@ -19,7 +19,7 @@
       android:paddingTop="18dp"
       >
 
-    <com.gzsll.hupu.widget.ProgressBarCircularIndeterminate
+    <com.android.mvpp2p.widget.ProgressBarCircularIndeterminate
         android:id="@+id/progress_view"
         android:layout_width="50dp"
         android:layout_height="50dp"

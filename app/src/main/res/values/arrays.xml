@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="information_titles">
+        <item>热点新闻</item>
+        <item>天眼看网贷</item>
+        <item>网贷专栏</item>
+        <item>网贷视野</item>
+    </string-array>
+</resources>

@@ -1,4 +1,4 @@
-package com.android.mvpp2p.ui;
+package com.android.mvpp2p.base;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,13 +17,13 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements Swip
 
   private SwipeBackActivityHelper mHelper;
 
-  @Override protected void onCreate(Bundle savedInstanceState) {
+  @Override public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     mHelper = new SwipeBackActivityHelper(this);
     mHelper.onActivityCreate();
   }
 
-  @Override protected void onPostCreate(Bundle savedInstanceState) {
+  @Override public void onPostCreate(Bundle savedInstanceState) {
     super.onPostCreate(savedInstanceState);
     mHelper.onPostCreate();
   }
@@ -59,7 +59,7 @@ public abstract class BaseSwipeBackActivity extends BaseActivity implements Swip
     }
   }
 
-  @Override protected void onResume() {
+  @Override public void onResume() {
     super.onResume();
     int mode = SettingPrefUtil.getSwipeBackEdgeMode(this);
     SwipeBackLayout mSwipeBackLayout = mHelper.getSwipeBackLayout();

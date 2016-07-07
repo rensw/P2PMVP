@@ -1,4 +1,4 @@
-package com.android.mvpp2p.ui;
+package com.android.mvpp2p.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,6 +19,7 @@ public abstract class BaseFragment extends ProgressFragment {
 
   private TextView tvError, tvEmpty, tvLoading;
   private Button btnReload;
+  public BaseActivity mActivity;
 
   public abstract void initInjector();
 
@@ -41,6 +42,7 @@ public abstract class BaseFragment extends ProgressFragment {
 
   @Override public void onViewCreated(View view, Bundle savedInstanceState) {
     initInjector();
+    mActivity= (BaseActivity) getActivity();
     getBundle(getArguments());
     initUI(view);
     initData();

@@ -1,4 +1,4 @@
-package com.android.mvpp2p.ui;
+package com.android.mvpp2p.base;
 
 /**
  * Created by sll on 2016/3/9.

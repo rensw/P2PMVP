@@ -1,4 +1,4 @@
-package com.android.mvpp2p.ui;
+package com.android.mvpp2p.base;
 
 
 import android.support.annotation.NonNull;

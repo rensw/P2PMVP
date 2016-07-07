@@ -5,10 +5,10 @@ import android.content.Context;
 
 import com.android.mvpp2p.MyApplication;
 import com.android.mvpp2p.api.HttpApi;
+import com.android.mvpp2p.base.BaseActivity;
 import com.android.mvpp2p.injector.module.ApiModule;
 import com.android.mvpp2p.injector.module.ApplicationModule;
 import com.android.mvpp2p.injector.module.DBModule;
-import com.android.mvpp2p.ui.BaseActivity;
 
 import javax.inject.Singleton;
 
